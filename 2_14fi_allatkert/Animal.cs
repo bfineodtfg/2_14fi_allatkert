@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace _2_14fi_allatkert
 {
@@ -16,7 +17,7 @@ namespace _2_14fi_allatkert
             nameLabel = new Label()
             {
                 Text = name,
-                TextAlign = System.Drawing.ContentAlignment.MiddleCenter,
+                TextAlign = ContentAlignment.MiddleCenter,
                 AutoSize = true,
                 Top = 3,
                 Left = 3
@@ -25,24 +26,44 @@ namespace _2_14fi_allatkert
             {
                 Text = type,
                 Top = nameLabel.Bottom,
-                TextAlign = System.Drawing.ContentAlignment.MiddleCenter,
+                TextAlign = ContentAlignment.MiddleCenter,
                 AutoSize = true,
+                BackColor = Color.Gray,
                 Left = 3
             };
-            this.Controls.Add(nameLabel);
-            this.Controls.Add(typeLabel);
-            this.Width = typeLabel.Width+6;
-            this.Height = typeLabel.Bottom+6;
+
             AnimalPanel = new Panel()
             {
-                BackColor = System.Drawing.Color.Gold,
-                Width = typeLabel.Width,
-                Height = typeLabel.Bottom,
+                BackColor = Color.Gold,
                 Top = 3,
                 Left = 3
             };
-            this.BackColor = System.Drawing.Color.Black;
+            this.BackColor = Color.Black;
             this.Controls.Add(AnimalPanel);
+            AnimalPanel.Controls.Add(nameLabel);
+            AnimalPanel.Controls.Add(typeLabel);
+            picture = new PictureBox()
+            {
+                Left = 3,
+                Top = typeLabel.Bottom + 3,
+                Width = typeLabel.Width,
+                Height = (int)((double)typeLabel.Width / 16 * 9)
+                //width:9  => 9 / 16 * 9
+                //egész osztás => (9/16) = 1      1 * 9 = 9
+                //valós osztás => 0,5625 * 9 = 5,0625 => 5
+            };
+            AnimalPanel.Controls.Add(picture);
+
+            AnimalPanel.Width = typeLabel.Width + 6;
+            AnimalPanel.Height = picture.Bottom + 9;
+            this.Width = typeLabel.Width + 12;
+            this.Height = picture.Bottom + 15;
+            picture.Click += ClickPicture;
+        }
+        public void ClickPicture(Object s, EventArgs e)
+        {
+            Form1.veryBigPicture.Image = picture.Image;
+            Form1.veryBigPicture.Show();
         }
         public Label nameLabel { get; set; }
         public Label typeLabel { get; set; }
