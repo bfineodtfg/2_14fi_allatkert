@@ -16,5 +16,7 @@ namespace _2_14fi_allatkert
         string foodType { get; set; }
         Label nameLabel { get; set; }
         Label typeLabel { get; set; }
+        PictureBox picture { get; set; }
+        Panel AnimalPanel { get; set; }
     }
 }

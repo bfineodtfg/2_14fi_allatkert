@@ -15,6 +15,11 @@ namespace _2_14fi_allatkert
         public Form1()
         {
             InitializeComponent();
+            Start();
+        }
+        void Start() {
+            Snake oneSnake = new Snake("Boa", "óriásssssssssssssskígyó");
+            this.Controls.Add(oneSnake);
         }
     }
 }

@@ -7,22 +7,13 @@ using System.Windows.Forms;
 
 namespace _2_14fi_allatkert
 {
-    class Pingvin: UserControl, IAnimal
+    class Pingvin:Animal
     {
-        public Pingvin(string name, string type)
+        public Pingvin(string name, string type) : base(name, type)
         {
-            animalName = name;
-            typeOFanimal = type;
-            nameLabel = new Label() { Text = name };
-            typeLabel = new Label() { Text = type };
+            
         }
-        public Label nameLabel { get; set; }
-        public Label typeLabel { get; set; }
-        public string animalName { get; set; }
-        public int age { get; set; }
-        public int weight { get; set; }
-        public string typeOFanimal { get; set; }
-        public string foodType { get; set; }
+
     }
     
 }
